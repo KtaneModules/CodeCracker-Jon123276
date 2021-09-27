@@ -121,6 +121,7 @@ public class CodeCracker : MonoBehaviour
         if (!_moduleSolved)
         {
             text.text = "--";
+            _hasStarted = false;
             Debug.LogFormat("[Code Cracker #{0}] You ran out of time! Strike.", _moduleId);
             Module.HandleStrike();
             for (int i = 0; i < _leftInputs.Length; i++)
