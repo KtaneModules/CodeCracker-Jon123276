@@ -158,7 +158,7 @@ public class CodeCracker : MonoBehaviour
         yield return null;
         foreach (var p in pieces.Skip(skip))
         {
-            ButtonPress(int.Parse(p.Trim()) - 1, 90);
+            ButtonPress(int.Parse(p.Trim()) - 1, 120);
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -169,12 +169,12 @@ public class CodeCracker : MonoBehaviour
         {
             if (_leftInputs[i] != _leftSolutions[i])
             {
-                ButtonPress(i, 90);
+                ButtonPress(i, 120);
                 yield return new WaitForSeconds(0.1f);
             }
             if (_rightInputs[i] != _rightSolutions[i])
             {
-                ButtonPress(i + 4, 90);
+                ButtonPress(i + 4, 120);
                 yield return new WaitForSeconds(0.1f);
             }
         }
