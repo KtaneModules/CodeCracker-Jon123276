@@ -150,7 +150,7 @@ public class CodeCracker : MonoBehaviour
         var skip = _twitchCommands.Contains(pieces[0]) ? 1 : 0;
         if (pieces.Skip(skip).Any(p => { int val; return !int.TryParse(p.Trim(), out val) || val < 1 || val > 8; }))
             yield break;
-        if (pieces.Length > 4)
+        if (pieces.Length > 5)
         {
             yield return "sendtochaterror You can't toggle more than 4 buttons at a time!";
             yield break;
