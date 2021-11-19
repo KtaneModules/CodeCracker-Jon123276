@@ -121,6 +121,7 @@ public class CodeCracker : MonoBehaviour
         if (!_moduleSolved)
         {
             text.text = "--";
+            _hasStarted = false;
             Debug.LogFormat("[Code Cracker #{0}] You ran out of time! Strike.", _moduleId);
             Module.HandleStrike();
             for (int i = 0; i < _leftInputs.Length; i++)
@@ -149,7 +150,7 @@ public class CodeCracker : MonoBehaviour
         var skip = _twitchCommands.Contains(pieces[0]) ? 1 : 0;
         if (pieces.Skip(skip).Any(p => { int val; return !int.TryParse(p.Trim(), out val) || val < 1 || val > 8; }))
             yield break;
-        if (pieces.Length > 4)
+        if (pieces.Length > 5)
         {
             yield return "sendtochaterror You can't toggle more than 4 buttons at a time!";
             yield break;
@@ -157,7 +158,7 @@ public class CodeCracker : MonoBehaviour
         yield return null;
         foreach (var p in pieces.Skip(skip))
         {
-            ButtonPress(int.Parse(p.Trim()) - 1, 90);
+            ButtonPress(int.Parse(p.Trim()) - 1, 120);
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -168,12 +169,12 @@ public class CodeCracker : MonoBehaviour
         {
             if (_leftInputs[i] != _leftSolutions[i])
             {
-                ButtonPress(i, 90);
+                ButtonPress(i, 120);
                 yield return new WaitForSeconds(0.1f);
             }
             if (_rightInputs[i] != _rightSolutions[i])
             {
-                ButtonPress(i + 4, 90);
+                ButtonPress(i + 4, 120);
                 yield return new WaitForSeconds(0.1f);
             }
         }
